@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Income and Expense Tracker</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-title">
+    <span class="logo"><i class="fa fa-briefcase"></i></span>
+    <div>
+      <h1>Income and Expense Tracker</h1>
+      <p>Take control of your finances</p>
+    </div>
+  </div>
+  <button id="darkToggle" class="icon-btn" title="Toggle dark mode"><i class="fa fa-moon-o"></i></button>
+</div>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="profile">
+      <div class="avatar"><i class="fa fa-user"></i></div>
+      <h2>Welcome!</h2>
+    </div>
+
+    <nav>
+      <button class="nav-btn active" data-view="dashboard"><i class="fa fa-home"></i>Dashboard</button>
+      <button class="nav-btn" data-view="transactions"><i class="fa fa-exchange"></i>Transactions</button>
+    </nav>
+
+    <button id="exportBtn" class="export-btn"><i class="fa fa-download"></i> Export Data</button>
+  </aside>
+
+  <!-- Main content -->
+  <main>
+
+    <!-- Dashboard view -->
+    <section id="dashboard" class="view active">
+
+      <div class="stats">
+        <div class="card">
+          <p class="card-label">Total Balance</p>
+          <h3 id="statBalance">€0.00</h3>
+          <p class="card-sub">This month</p>
+        </div>
+        <div class="card">
+          <p class="card-label">Monthly Income</p>
+          <h3 id="statIncome" class="blue">€0.00</h3>
+          <p class="card-sub">This month</p>
+        </div>
+        <div class="card">
+          <p class="card-label">Monthly Expenses</p>
+          <h3 id="statExpense" class="red">$0.00</h3>
+          <p class="card-sub">This month</p>
+        </div>
+        <div class="card">
+          <p class="card-label">Savings Rate</p>
+          <h3 id="statSavings">0%</h3>
+          <p class="card-sub">Of income</p>
+        </div>
+      </div>
+
+      <div class="charts">
+        <div class="chart-card">
+          <h2>Spending by Category</h2>
+          <canvas id="categoryChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <h2>Monthly Overview</h2>
+          <canvas id="overviewChart"></canvas>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Transactions view -->
+    <section id="transactions" class="view">
+      <div class="chart-card">
+        <h2>Add Transaction</h2>
+        <div class="form-row">
+          <input type="text" id="description" placeholder="Description">
+          <input type="number" id="amount" placeholder="Amount">
+          <select id="type">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+          <select id="category">
+            <option>Food</option>
+            <option>Transportation</option>
+            <option>Housing</option>
+            <option>Entertainment</option>
+            <option>Shopping</option>
+          </select>
+          <button onclick="addTransaction()">Add</button>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h2>All Transactions</h2>
+        <ul id="list"></ul>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
